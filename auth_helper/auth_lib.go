@@ -12,7 +12,7 @@ type authHelper struct {
 type AuthHelperInterface interface {
 	AuthPassword(pwStored string, pwInput string) bool
 	CreatePasswordHash(pw string) (string, error)
-	CreateTokenCustomer(claims *AuthTokenClaimsCustomer) (string, error)
+	CreateTokenCustomer(userID, customerID, roleID string) (string, error) 
 	CreateTokenEmployee(claims *AuthTokenClaimsEmployee) (string, error)
 	DecodeTokenCustomer(token string) (string, string, string, error)
 	DecodeTokenEmployee(token string) (string, string, string, error)
