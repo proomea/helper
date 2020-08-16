@@ -21,7 +21,13 @@ type AuthTokenClaimsEmployee struct {
 }
 
 // JWT TOKEN for CUSTOMER LOGIN Endpoint
-func (ah *authHelper) CreateTokenCustomer(claims *AuthTokenClaimsCustomer) (string, error) {
+func (ah *authHelper) CreateTokenCustomer(userID, customerID, roleID string) (string, error) {
+	claims := &AuthTokenClaimsCustomer{
+		UserID:         userID,
+		CustomerID:     customerID,
+		RoleID:         roleID,
+		StandardClaims: jwt.StandardClaims{},
+	}
 	ttl := ah.tokenExp * time.Second
 	claims.StandardClaims.ExpiresAt = time.Now().UTC().Add(ttl).Unix()
 
