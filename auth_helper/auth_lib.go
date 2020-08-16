@@ -12,8 +12,10 @@ type authHelper struct {
 type AuthHelperInterface interface {
 	AuthPassword(pwStored string, pwInput string) bool
 	CreatePasswordHash(pw string) (string, error)
-	CreateToken(claims *AuthTokenClaims) (string, error)
-	DecodeToken(token string) (string, string, string, error)
+	CreateTokenCustomer(claims *AuthTokenClaimsCustomer) (string, error)
+	CreateTokenEmployee(claims *AuthTokenClaimsEmployee) (string, error)
+	DecodeTokenCustomer(token string) (string, string, string, error)
+	DecodeTokenEmployee(token string) (string, string, string, error)
 	CreateUUID() string
 }
 
